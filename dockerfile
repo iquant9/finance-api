@@ -1,7 +1,7 @@
-FROM python:3.10-slim as build
+FROM python:3.11-slim-buster as build
+# 当前的稳定版
 RUN apt-get update
-RUN apt-get install -y --no-install-recommends \
-build-essential gcc
+RUN apt-get install -y --no-install-recommends gcc
 
 WORKDIR /usr/app
 RUN python -m venv /usr/app/venv
