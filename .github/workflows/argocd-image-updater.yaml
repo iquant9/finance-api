@@ -33,14 +33,7 @@ jobs:
       - name: Build backend and push
         uses: docker/build-push-action@v3
         with:
-          context: backend
+          context: finance-api
           push: true
           platforms: linux/amd64,linux/arm64
           tags: ${{ env.DOCKERHUB_USERNAME }}/backend:${{ steps.branch.outputs.branch }}-${{ steps.vars.outputs.sha_short }}
-      - name: Build frontend and push
-        uses: docker/build-push-action@v3
-        with:
-          context: frontend
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags: ${{ env.DOCKERHUB_USERNAME }}/frontend:${{ steps.branch.outputs.branch }}-${{ steps.vars.outputs.sha_short }}
