@@ -16,10 +16,10 @@ jobs:
         uses: actions/checkout@v3
       - name: Set outputs
         id: vars
-        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+        run: echo "sha_short=$(git rev-parse --short HEAD)" >>$GITHUB_OUTPUT
       - name: Extract branch name
         shell: bash
-        run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+        run: echo "branch=$(echo ${GITHUB_REF#refs/heads/})" >>$GITHUB_OUTPUT
         id: branch
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
@@ -36,4 +36,4 @@ jobs:
           context: finance-api
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ${{ env.DOCKERHUB_USERNAME }}/backend:${{ steps.branch.outputs.branch }}-${{ steps.vars.outputs.sha_short }}
+          tags: ${{ env.DOCKERHUB_USERNAME }}/finance-api:${{ steps.branch.outputs.branch }}-${{ steps.vars.outputs.sha_short }}
