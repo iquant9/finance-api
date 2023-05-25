@@ -6,7 +6,7 @@ on:
       - "main"
 
 env:
-  DOCKERHUB_USERNAME: jei888
+  DOCKERHUB_USERNAME: aiquant9
 
 jobs:
   docker:
@@ -26,20 +26,13 @@ jobs:
         with:
           username: ${{ env.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build backend and push
+      - name: Build finance-api and push
         uses: docker/build-push-action@v3
         with:
-          context: backend
+          context: finance-api
           push: true
           platforms: linux/amd64,linux/arm64
-          tags: ${{ env.DOCKERHUB_USERNAME }}/backend:${{ steps.vars.outputs.sha_short }}
-      - name: Build frontend and push
-        uses: docker/build-push-action@v3
-        with:
-          context: frontend
-          push: true
-          platforms: linux/amd64,linux/arm64
-          tags: ${{ env.DOCKERHUB_USERNAME }}/frontend:${{ steps.vars.outputs.sha_short }}
+          tags: ${{ env.DOCKERHUB_USERNAME }}/finance-api:${{ steps.vars.outputs.sha_short }}
       # - name: Update helm values.yaml
       #   uses: fjogeleit/yaml-update-action@main
       #   with:
