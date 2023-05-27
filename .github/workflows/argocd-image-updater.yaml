@@ -30,7 +30,7 @@ jobs:
         with:
           username: ${{ env.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-      - name: Build backend and push
+      - name: Build finance-api and push
         uses: docker/build-push-action@v3
         with:
           context: .
