@@ -33,6 +33,6 @@ jobs:
           password: ${{secrets.GITHUB_TOKEN}}
       - name: Build finance-api and push
         run: |
-          docker build . --tag ghcr.io/${{github.actor}}finance-api:${{ steps.branch.outputs.branch }}-${{ steps.vars.outputs.sha_short }}
+          docker build . --tag ghcr.io/${{github.actor}}/finance-api:${{ steps.branch.outputs.branch }}-${{ steps.vars.outputs.sha_short }}
           docker push ghcr.io/${{github.actor}}/finance-api:${{ steps.branch.outputs.branch }}-${{ steps.vars.outputs.sha_short }}
 
